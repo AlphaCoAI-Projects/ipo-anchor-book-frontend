@@ -8,7 +8,7 @@ export async function GET() {
     const pipeline = [
       { $unwind: "$lead_managers" },
       { $group: { _id: "$lead_managers.manager_name" } },
-      { $match: { _id: { $ne: null, $ne: "" } } },
+      { $match: { _id: { $nin: [null, ""] } } },
       { $sort: { _id: 1 } },
     ];
 
